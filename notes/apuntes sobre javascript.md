@@ -129,3 +129,11 @@ callback
 GET-POST
 
 	Son metodos para para hacer peticiones, tanto para recibir como para enviar datos. La verdad es que este tema no lo entiendo muy bien junto con todo lo de ajax, sin embargo entiendo que tanto get como post se utilizan si queremos mandar o recibir cierta informacion de paginas web
+
+Propiedades
+
+	Son caracteristicas o atributos de los tipos de datos
+
+Métodos
+
+	Acciones o funciones que me permiten ejecutar cierta acción con el dato al que le asigne el método
