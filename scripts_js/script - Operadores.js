@@ -83,7 +83,7 @@ console.log(0 === false);
 
 /* DE ASIGNACION */
 
-console.log('---Incremento y decremento---');
+console.log('---Asignación---');
 
 let i = 1
 let i1 = 1
