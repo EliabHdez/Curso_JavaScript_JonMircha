@@ -137,3 +137,7 @@ Propiedades
 Métodos
 
 	Acciones o funciones que me permiten ejecutar cierta acción con el dato al que le asigne el método
+
+Objeto Iterable
+
+	Un objeto iterable es un tipo de objeto que devuelve sus elementos de uno en uno cada vez.Es decir que se pueda partir en pequeños elementos. Ejemplo un array el cual se puede dividir de forma individual cada valor de ese array o un string que se puede dividir de forma individual en cada uno de los caracteres que la conforman
