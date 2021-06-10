@@ -141,3 +141,7 @@ Métodos
 Objeto Iterable
 
 	Un objeto iterable es un tipo de objeto que devuelve sus elementos de uno en uno cada vez.Es decir que se pueda partir en pequeños elementos. Ejemplo un array el cual se puede dividir de forma individual cada valor de ese array o un string que se puede dividir de forma individual en cada uno de los caracteres que la conforman
+
+Programcion Orienta a Objetos (P.O.O)
+
+	Los prototipos, las herencias, las clases y los metodos estaticos, getters y setters son caracteristicas de la programacion orientada a objetos o al menos se ocupan para este tipo de programacion
