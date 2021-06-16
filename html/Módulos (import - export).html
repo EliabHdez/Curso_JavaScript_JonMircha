@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Módulos (import / export)</title>
+</head>
+<body>
+    <h1>Módulos (import / export)</h1>
+    <script src="../scripts_js/script - Módulos (import - export).js" type="module"></script>
+        <!-- Para hacer importaciones de otros archivos js es ncesario que dentro de nuestra etiqueta script agreguemos un parametro llamado type con el valor module, de lo contrario no nos permitira importar archivos js. Esto solo es para cuando vayamos a ocupar mas de un archivo js 
+        
+            El type module dicho en otras palabras es para poder utilizar codigo de otro archivo en el archivo js principal de la pagina con este lo exportamos e importamos -->
+
+    <script src="../scripts_js/script - No-Modulos.js" nomodule></script>
+        <!-- Esta etiqueta es para navegadores que no soportan modulos como internet explorer, ya no tiene mucho caso ya que en la actualidad ie ya no se usa y todos los navegadores recientes aceptan modulo, sin embargo es necesario ponerlo para conocerlo. El parametro nomodule se pone para que el navegador que si acepta modulos no cargue dos veces el archivo, ya que de no ponerlo estaria cargando los dos archivos script de estas etiquetas 
+        
+            El nomodule es para dar soporte a navegadores antiguos, utilizamos la misma programacion pero escrita en ES5-->
+</body>
+</html>
