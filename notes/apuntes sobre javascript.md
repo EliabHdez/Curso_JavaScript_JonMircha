@@ -145,3 +145,10 @@ Objeto Iterable
 Programcion Orienta a Objetos (P.O.O)
 
 	Los prototipos, las herencias, las clases y los metodos estaticos, getters y setters son caracteristicas de la programacion orientada a objetos o al menos se ocupan para este tipo de programacion
+
+Ejercicios de Lógica de Programación
+
+	1.- Programa una función que cuente el número de caracteres de una cadena de texto
+	2.- Programa una fúncion que te devuelva el texto recortado según el número de caracteres indicados
+	3.- Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter
+	4.- Programa una función que repita un texto 'x' número de veces
