@@ -152,3 +152,227 @@ Ejercicios de Lógica de Programación
 	2.- Programa una fúncion que te devuelva el texto recortado según el número de caracteres indicados
 	3.- Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter
 	4.- Programa una función que repita un texto 'x' número de veces
+	5.- Programa una función que invierta las palabras de una cadena de texto
+	6.- Programa una función para contar el número de veces que se repite una palabra en un texto largo
+	7.- Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro)
+	8.- Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+	9.- Programa una función que obtenga un numero aleatorio entre 501 y 600.
+	10.- Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro)
+	11.- Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n)
+	12.- Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+	13.- Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+	14.- Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+
+		(Todos los ejercicio se crearon con funciones, ya sea funcion clasica o de flecha pero con funciones, en alguno que otro añadi ejercicios sin utilizar funciones, donde emple variables o constantes solo para ver que era lo mismo y daba los mismos resultados, pero en otros no y solo se quedaron realizados con funciones, ya que asi tal cual fue como los estipulo el profe, crear o programar una funcion que arrojara ciertos resultados)
+
+Soluciones a los ejercicio echas por echas por el profe
+	Ejericio 1
+		Forma 1
+			contarCaracteres = (cadena = '') => {
+			if(cadena === ''){
+				console.warn('No ingresaste ninguna palabra')
+			}else{
+				console.info(`La palabra "${cadena}" tiene ${cadena.length} caracteres`)
+				}
+			}	
+			contarCaracteres('parangarocutirimicuaro')
+		Forma 2
+			const contCar = (word = '') => 
+				(!word) 
+					? console.warn('No ingresaste ninguna palabra') 
+					: console.info(`La palabra "${cadena}" tiene ${cadena.length} caracteres`)
+	Ejercicio 2
+		Forma 1
+			const recTexto = (cadena = '', longitud = undefined) =>
+				(!cadena)
+					? console.warn('No ingresaste ninguna palabra')
+					: (longitud === undefined)
+						? console.warn('No ingresaste la longitud donde terminara de el recortado')
+						: console.info(cadena.slice(0, longitud))
+				
+			recTexto("Hola Mundo", 4)
+			recTexto()
+			recTexto("Hola Mundo")
+			recTexto("", 5)
+
+	Ejercicio 3
+		Forma 1
+			const strToArr = (cadena = '', separator = undefined) => {
+				if(!cadena){
+					console.warn('No ingresaste ninguna palabra')
+				}else{
+					if(!separator){
+						console.warn('No ingresaste ningun separador')
+					}else{
+						console.info(cadena.split(separator))
+					}
+				}
+			}
+
+			strToArr('lorem impsum dolor sit amet consectectur', ' ')
+			strToArr('Ene, Feb, Mar, Abr, Mayo, Jun, Jul, Ago, Sept, Oct, Nov, Dic', ',')
+			strToArr()
+			strToArr('Hola Mundo')
+			strToArr('','-')
+
+		Forma 2
+			const strToArr2 = (cadena = '', separator = undefined) =>
+				(!cadena)
+				? console.warn('No ingresaste ninguna palabra')
+				: (!separator === undefined)
+					? console.warn('No ingresaste ningun separador')
+					: console.info(cadena.split(separator))
+
+			strToArr2('lorem impsum dolor sit amet consectectur', ' ')
+			strToArr2('Ene, Feb, Mar, Abr, Mayo, Jun, Jul, Ago, Sept, Oct, Nov, Dic', ',')
+			strToArr2()
+			strToArr2('Hola Mundo')
+			strToArr2('','-')
+
+	Ejercicio 4
+		Forma 1
+			const repTexto = (texto = '', repeticiones = undefined) => {
+				if(!texto) return console.warn('No ingresaste ningun texto o palabra')
+
+				if(!repeticiones) return console.warn('No ingresaste el numero de repeticiones')
+
+				if(repeticiones === 0) return console.error('El numero de repeticiones no puede ser 0')
+				
+				if(Math.sign(repeticiones) === -1) return console.warn('El numero de repeticiones no puede ser negativo')
+
+				for(let i = 1; i <= repeticiones; i++) console.info(`${texto}, ${i}`)
+			}
+
+			repTexto('Hola Mundo', 3)
+			repTexto('Hola Mundo', 0)
+			repTexto('Hola Mundo', -20)
+			repTexto('', 20)
+			repTexto('Hola Mundo')
+
+	Ejercicio 5
+		Forma 1
+			const invCadena = (cadena = '') => {
+    			(!cadena)
+    			    ? console.warn('No ingresaste ninguna palabra o texto')
+    			    : console.info(cadena.split('').reverse().join(''))
+				}
+
+			invertirCadena()
+			invertirCadena('Hola Mundo')
+
+	Ejercicio 6
+		Forma 1
+			let x = 0
+			let cont = 0
+
+			const repWord = (texto = '', word = '') => {
+			    if(!texto) return console.warn('No ingresaste un texto')
+
+			    if(!word) return console.warn('No ingresaste la palabra a buscar')
+
+			    while (x !== -1){
+			        x = texto.toLowerCase().indexOf(word, x)
+			        if(x !== -1){
+			            x++
+			            cont++
+			        }
+			    }
+			    return console.info(`La palabra ${word}, se repite ${cont} veces`)
+			}
+
+			repWord()
+			repWord('', 'moto')
+			repWord('Tengo una moto, con esa moto hice uno de los mejores viajes de mi vida. AMO MI MOTO')
+			repWord('Tengo una moto, con esa moto hice uno de los mejores viajes de mi vida. AMO MI MOTO', 'moto')
+
+	Ejercicio 7
+		Forma 1
+		const palindromo = (palabra = '') => {
+			if (!palabra) return console.warn('No ingresaste ninguna palabra')
+
+			palabra = palabra.toLowerCase()
+			let palReves = palabra.split('').reverse().join('')
+
+			return (palabra === palReves)
+			? console.info(`La palabra ${palabra} es palindroma`)
+			: console.info(`La palabra ${palabra} no es palindroma`)
+		}
+
+		palindromo('')
+		palindromo('Honda')
+		palindromo('Salas')
+
+	Ejercicio 8
+		Forma 1
+			const delCaracteres = (texto = '', patron = '') => {
+	    (!texto)
+	    ? console.warn('No ingresaste ningun texto')
+	    : (!patron)
+	        ? console.warn('No ingresaste el patron de caracteres a eliminar')
+	        : console.info(texto.replace(new RegExp(patron,'ig'),''))
+		}
+
+		delCaracteres()
+		delCaracteres('xyz1, xyz2, xyz3, xyz4 y xyz5')
+		delCaracteres('xyz1, xyz2, xyz3, xyz4 y xyz5', 'xyz')
+		delCaracteres('xyz1, xyz2, xyz3, xyz4 y xyz5', 'xy')
+		delCaracteres('xyz1, xyz2, xyz3, xyz4 y xyz5', 'xz')
+		delCaracteres('xyz1, xyz2, xyz3, xyz4 y xyz5', 'yz')
+
+	Ejercicio 9
+		Forma 1
+			const aleatorio() => {
+				console.info(Math.round((Math.random() * 100) + 500))
+			}
+
+			aleatorio()
+
+	Ejercicio 10
+		Forma 1
+			const capicua = (numero = 0) => {
+    			if(!numero) return console.warn('No ingresaste un número')
+
+    			if(typeof numero !== 'number') return console.error(`El valor "${numero}" ingresado, NO es un numero`)
+
+    			numero = numero.toString()
+    			let alReves = numero.split('').reverse().join('')
+
+    			return (numero === alReves)
+    			    ? console.info(`Si es capicua. Numero original: ${numero}. Numero al reves: ${alReves}`)
+    			    : console.info(`No es capicua. Numero original: ${numero}. Numero al reves: ${alReves}`)
+			}
+
+			capicua()
+			capicua('19')
+			capicua({})
+			capicua(2000)
+			capicua(2002)
+			capicua(18.99)
+			capicua(212.212)
+
+	Ejercicio 11
+		Forma 1
+			const factorial = (num = undefined) => {    
+    			if(num === undefined) return console.warn('No ingresaste ningun valor numerico')
+
+    			if(num < 0) return console.error('Los numeros negativos no son validos')
+
+    			if(num === 0) return console.error('El numero 0 no es valido')
+
+    			if(typeof num !== 'number') return console.error('El valor ingresado NO es un numero')
+
+    			let factorial = 1
+
+    			for(let i = num; i > 1; i--){
+    			    factorial *= i
+    			}
+    			return console.info(`El factorial de ${num} es ${factorial}`)
+			}
+
+			factorial()
+			factorial('5')
+			factorial([1,2,3])
+			factorial(0)
+			factorial(-5)
+			factorial(5)
+			factorial(8)
