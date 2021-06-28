@@ -162,5 +162,11 @@ Ejercicios de Lógica de Programación
 	12.- Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
 	13.- Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
 	14.- Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+	15.- Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+	16.- Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, 	pe. miFuncion(1000, 20) devolverá 800.
+	17.- Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, 	pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+	18.- Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+	19.- Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+	20.- Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
 
 		(Todos los ejercicio se crearon con funciones, ya sea funcion clasica o de flecha pero con funciones, en alguno que otro añadi ejercicios sin utilizar funciones, donde emple variables o constantes solo para ver que era lo mismo y daba los mismos resultados, pero en otros no y solo se quedaron realizados con funciones, ya que asi tal cual fue como los estipulo el profe, crear o programar una funcion que arrojara ciertos resultados)
