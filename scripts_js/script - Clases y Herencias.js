@@ -1,4 +1,4 @@
-// En las clases ya no es necesario dejar los metodos fuera de las clases como en el caso de las funciones constructoras ya que en las clases js hace esta separacion o mejora de forma automatica e interna, por lo tanto ya no impactaran en el rendimiento y la memoria
+ // En las clases ya no es necesario dejar los metodos fuera de las clases como en el caso de las funciones constructoras ya que en las clases js hace esta separacion o mejora de forma automatica e interna, por lo tanto ya no impactaran en el rendimiento y la memoria
 
 class Animal{
     constructor(nombre, genero){
