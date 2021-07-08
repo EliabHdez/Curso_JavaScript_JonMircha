@@ -560,3 +560,174 @@
 			nameEmail('Moises Hernandez', /^[A-Za-zÑñÁÉÍÓÚáéíóúÜü\s]+$/g)
 			nameEmail('moises_hl_zod@hotmail', /^[a-zA-Z0-9ÁÉÍÓÚáéíóúÜüÑñ._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9]+$/g)
 			nameEmail('moises_hl_zod@hotmail.com', new RegExp(/^[a-zA-Z0-9ÁÉÍÓÚáéíóúÜüÑñ._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9]+$/g))
+
+	// Ejercicio 21
+		// Forma 1
+			const arrNum = (arr) => {
+				if(arr === undefined) return console.warn('No ingresaste ningun Array')
+			
+				if(!(arr instanceof Array)) return console.error('El dato ingresado no es un Array')
+			
+				if(arr.length === 0) return console.error('El Array ingresado esta vacio')
+			
+				for (let num of arr){
+					if(typeof num !== 'number') return console.error(`El valor ${num} ingresado NO es un 	número`)
+				}
+
+				const newArr = arr.map(el => el * el)
+				return console.info(`Array original: ${arr},\nArreglo elevado al cuadrado: ${newArr}`)
+			}
+
+			arrNum()
+			arrNum('')
+			arrNum(123)
+			arrNum({})
+			arrNum([])
+			arrNum([1,2,'3',4,{}])
+			arrNum([1,2,3,4,5])
+
+	// Ejercicio 22
+		// Forma 1
+			const arrayMinMax = (arr) => {
+				if(arr === undefined) return console.warn('No ingresaste ningun Array')
+
+				if(!(arr instanceof Array)) return console.error('El dato que ingresaste no es un Array')
+
+				if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
+
+				for(let num of arr){
+					if(typeof num !== 'number') return console.error(`El valor ${num} NO es un numero`)
+				}
+
+				return console.log(`Array original ${arr}\nValor mas alto: ${Math.max(...arr)}\nValor mas bajo: ${Math.min(...arr)}`)
+			}
+
+	// Ejercicio 23
+			// Forma 1
+				const separarParesImpares = (arr1) => {
+					if(arr1 === undefined) return console.warn('No ingresaste ningun Array')
+				
+					if(!(arr1 instanceof Array)) return console.error('El dato ingresado debe ser un Array')
+				
+					if(arr1.length === 0) return console.warn('El Array ingresado esta vacío')
+				
+					for(let num of arr1){
+						if(typeof num !== 'number') return console.error(`El dato ${num} NO es un número`)
+					}
+				
+					return console.info({
+						Pares: arr1.filter(num => num % 2 === 0),
+						Impares: arr1.filter(num => num % 2 === 1)
+					})
+				}
+				
+				separarParesImpares()
+				separarParesImpares('')
+				separarParesImpares(123)
+				separarParesImpares([])
+				separarParesImpares([1,2,3,'j'])
+				separarParesImpares([11,12,13,14,15,16,17,18,19,20])
+
+	// Ejercicio 24
+			// Forma 1
+				const ordenNumeros = (arr) => {
+					if(arr === undefined) return console.warn('No inresaste ningun Array')
+				
+					if(!(arr instanceof Array)) return console.error(`El dato ingresado No es un Array`)
+				
+					if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
+				
+					for(element of arr){
+						if(typeof element !== 'number') return console.error(`El dato "${element}" ingresado 	NO es un número`)
+					}
+				
+					return console.info({
+						Arreglo_Original: arr,
+						Ascendente: arr.map(el => el).sort((a,b) => a - b),
+						Descendente: arr.map(el => el).sort((a,b) => b - a)
+					})
+				}
+
+				ordenNumeros()
+				ordenNumeros('')
+				ordenNumeros(123)
+				ordenNumeros([])
+				ordenNumeros([10,2,3,'hola'])
+				ordenNumeros([10,2,3,200,4,5])
+
+	// Ejercicio 25
+			// Forma 1
+				const quitarDuplicados = (arr) => {
+					if(arr === undefined) return console.warn('No inresaste ningun Array')
+
+    				if(!(arr instanceof Array)) return console.error(`El dato ingresado No es un Array`)
+
+    				if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
+
+    				if(arr.length === 1) return console.warn('El Array ingresado debe tener al menos 2 elementos')
+
+					return console.info({
+						Original: arr,
+						SinDuplicados: arr.filter((value,index,self) => self.indexOf(value) === index)
+					})
+				}
+
+				eliminarDuplicados()
+				eliminarDuplicados('')
+				eliminarDuplicados(123)
+				eliminarDuplicados([])
+				eliminarDuplicados([5])
+				eliminarDuplicados(['x',10,'x',2,10,'10',true,true])
+
+			// Forma 2
+				const quitarDuplicados = (arr) => {
+					if(arr === undefined) return console.warn('No inresaste ningun Array')
+
+					if(!(arr instanceof Array)) return console.error(`El dato ingresado No es un Array`)
+
+					if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
+
+					if(arr.length === 1) return console.warn('El Array ingresado debe tener al menos 2 	elementos')
+
+					return console.info({
+						Original: arr,
+						SinDuplicados: [...new Set(arr)]
+					})
+				}
+
+				eliminarDuplicados()
+				eliminarDuplicados('')
+				eliminarDuplicados(123)
+				eliminarDuplicados([])
+				eliminarDuplicados([5])
+				eliminarDuplicados(['x',10,'x',2,10,'10',true,true])
+
+	// Ejercicio 26
+			// Forma 1
+				const promedio = (arr) => {
+					if(arr === undefined) return console.warn('No ingresaste ningun Array')
+
+    				if(!(arr instanceof Array)) return console.error(`El dato ingresado No es un Array`)
+
+    				if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
+
+    				for(let elemento of arr){
+    				    if(typeof elemento !== 'number') return console.error(`El valor "${elemento}" NO es 	un número`)
+    				}
+					
+					return console.info(
+						arr.reduce((total, num, index, arr) => {
+							total += num
+							if(index === arr.length-1){
+								return console.info(`El promedio de ${arr.join('+')} es ${total / arr.length}`)
+							}
+						})
+					)
+				}
+
+				promedio()
+				promedio('')
+				promedio(123)
+				promedio([])
+				promedio([2,true])
+				promedio([1,2,3,4,5,6,7,8,9,0])
