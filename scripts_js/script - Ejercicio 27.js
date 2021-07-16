@@ -20,52 +20,201 @@
 
 		* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western. */
 
-class pelicula{
-    constructor(idIMBD, titulo, director, añoEstreno, pais, generos, clasificacion, calificacionIMBD){
-		if(titulo.length > 100) return console.error('El titulo no puede contener mas de 100 caracteres')
+class Pelicula{
+    constructor({id, titulo, director, year, pais, generos, clasificacion, calificacion}){
 
-		if(director.length > 50) return console.error('El nombre del director no puede contener mas de 50 caracteres')
-
-		if(typeof añoEstreno !== 'number') return console.error('El año tiene que estar definido por numeros')
-
-		if(añoEstreno.length > 4) return console.warn('El año solo debe de contener 4 caracteres numericos. Por ejemplo 1990')
-
-		if(!(pais instanceof Array)) return console.error('El/Los pais(es) de origen deben estar almacenados en un Array')
-
-		if(!(generos instanceof Array)) return console.error('El/Los genero(s) deben estar almacenados en un Array')
-
-		if(generos !== Action || generos !== Adult) return console.error('El genero ingresado no es valido')
-
-		if(calificacionIMBD < 0 || calificacionIMBD > 10) return console.error('La calificacion tiene que ser un numero entre 0 y 10')
-
-        this.id = idIMBD
+        this.id = id
         this.titulo = titulo
         this.director = director
-        this.estreno = añoEstreno
+        this.year = year
         this.pais = pais
-        this.genero = generos
-        this.calificacion = calificacionIMBD
+        this.generos = generos
+        this.calificacion = calificacion
 		this.clasificacion = clasificacion
+
+		this.validarIMDB(id)
+		this.validarTitulo(titulo)
+		this.validarDirector(director)
+		this.validarYear(year)
+		this.validarPais(pais)
+		this.validarGeneros(generos)
+		this.validarCalificacion(calificacion)
+		this.validarClasificacion(clasificacion)
     }
 
-	get Generos(){
-		return console.warn('Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.')
+	static get listaGeneros(){
+		return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News, Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"]
+	}
+	static generosAceptados(){
+		return console.log(`Los géneros aceptados son: ${Pelicula.listaGeneros.join(', ')}`)
 	}
 
-	set fichaTecnica(fichaTecnica){
-		return console.log(``)
+	validarCadena(propiedad, valor){
+		if(valor === undefined) return console.warn(`${propiedad} "${valor}" esta vacío`)
+
+		if(typeof valor !== 'string') return console.error(`${propiedad} "${valor}" ingresado, NO es un una cadena de texto`)
+
+		return true
+	}
+
+	validarIMDB(id){
+		if(this.validarCadena('IMDB id', id)){
+			if(!(/^([a-z]){2}([0-9]){7}$/.test(id))){
+				return console.error(`IMDB id "${id}" no es válido, debe contener 9 caracteres, los 2 primeros deben ser letras minúsculas y los 7 restantes números`)
+			}
+		}
+	}
+
+	validarLongitudCadena(propiedad, valor, longitud){
+		if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el número de caracteres permitidos (${longitud})`)
+
+		return true
+	}
+	
+	validarTitulo(titulo){
+		if(this.validarCadena('Título', titulo)){
+			this.validarLongitudCadena('Título', titulo, 100)
+		}
+	}
+
+	validarDirector(director){
+		if(this.validarCadena('Director', director)){
+			this.validarLongitudCadena('Director', director, 50)
+		}
+	}
+
+	validarNumeros(propiedad, valor){
+		const yearEnCurso = 'Año Actual 2021'
+
+		if(valor === undefined) return console.warn(`${propiedad} "${valor}" esta vacío`)
+
+		if(typeof valor !== 'number') return console.error(`${propiedad} "${valor}" ingresado, NO son numeros`)
+
+		if(valor > 2021) return console.error(`El ${propiedad} "${valor}" NO es válido. El ${propiedad} no puede ser mayor al año en curso (${yearEnCurso})`)
+
+		return true
+	}
+
+	validarYear(year){
+		if(this.validarNumeros('Año de Estreno', year)){
+			if(!(/^[0-9]{4}$/.test(year))){
+				return console.error(`${year} NO es un año valido. El año se debe conformar de 4 digitos enteros`)
+			}
+		}
+	}
+
+	validarArray(propiedad, valor){
+		if(valor === undefined) return console.warn(`No se ha(n) ingresado ${propiedad}`)
+
+		if(!(valor instanceof Array)) return console.error(`El/Los ${propiedad} deben estar en un Array`)
+
+		if(valor.length === 0) return console.warn(`El Array "${propiedad}" esta vacío`)
+
+		valor.forEach((element) => {
+			if(typeof element !== 'string') return console.error(`"${element}" NO es válido. El tipo de dato debe ser de texto`)
+			
+			if(!/^[a-zA-Z-\s]*$/.test(element)) return console.error(`${element} NO es un dato válido`)
+
+			if(element.length === 0) return console.warn('El "valor" del string NO esta definido')
+		})
+
+		// for(let element of valor){
+		// 	if(typeof element !== 'string') return console.error(`"${element}" NO es válido. El tipo de dato debe ser numerico`)
+			
+		// 	if(!/^[a-zA-Z-\s]*$/.test(element)) return console.error(`${element} NO es un dato válido`)
+
+		// 	if(element.length === 0) return console.warn('El "valor" del string NO esta definido')
+		// }
+
+		return true
+	}
+
+	validarPais(pais){
+		this.validarArray('País(es) de origen', pais)
+	}
+
+	validarGeneros(generos){
+		if(this.validarArray('Generos', generos)){
+			for (let genero of generos){
+				if(!Pelicula.listaGeneros.includes(genero)){
+					console.error(`El genero "${genero}" NO es un género válido`)
+					Pelicula.generosAceptados()			}
+			}
+		}
+	}
+
+	validarNumCal(propiedad, valor){
+		if(valor === undefined) return console.warn('No se ha ingresado ninguna calificacion')
+
+		if(typeof valor !== 'number') return console.error(`${propiedad} "${valor}" no es válida. Esta debe ser un valor numerico`)
+
+		return true
+	}
+
+	validarCalificacion(calificacion){
+		if(this.validarNumCal(`La calificación`, calificacion))
+			return (calificacion < 0 || calificacion > 10) 
+				? console.error(`La calificacion debe ser un numero entre 0 y 10. Calificacion asignada "${calificacion}" No es válida`)
+				: this.calificacion = calificacion.toFixed(1)
+	}
+
+	validarClasificacion(clasificacion){
+		if(this.validarCadena(`La clasificacion`, clasificacion)){
+			if(clasificacion === 'B-15') return true
+
+			if(clasificacion === 'AA') return true
+
+			if(clasificacion === 'B15') return true
+
+			if(!/^[A|B|C|D]$/.test(clasificacion)) return console.error(`La clasificación ${clasificacion} NO es válida`)
+		}
+	}
+	fichaTecnica(){
+		console.log(`
+			FICHA TÉCNICA:
+
+			ID: ${this.id}
+			Título: ${this.titulo}
+        	Director: ${this.director}
+        	Año de Estreno: ${this.year}
+        	Pais(es): ${this.pais.join(', ')}
+        	Géneros: ${this.generos.join(', ')}
+        	Calificación: ${this.calificacion}
+			Clasificación: ${this.clasificacion}`)
 	}
 }
 
-class fury extends pelicula{
-	constructor(idIMBD, titulo, director, añoEstreno, pais, generos, clasificacion, calificacionIMBD){
-		this.id = idIMBD
-		this.titulo = titulo
-		this.director = director
-		this.estreno = añoEstreno
-		this.pais = pais
-		this.generos = generos
-		this.clasificacion = clasificacion
-		this.calificacion = calificacionIMBD
+const PelisFavoritas = [
+	{
+		id: 'tt0816692',
+		titulo: 'Interestelar',
+		director: 'Christopher Nolan',
+		year: 2006,
+		pais: ['Estados Unidos', 'Reino Unido', 'Canada'],
+		generos: ['Sci-Fi', 'Adventure', 'Drama'],
+		calificacion: 8.6,
+		clasificacion: 'AA'
+	},
+	{
+		id: 'tt2713180',
+		titulo: 'Corazones de Hierro',
+		director: 'David Ayer',
+		year: 2014,
+		pais: ['Estados Unidos'],
+		generos: ['Action', 'War', 'Drama'],
+		calificacion: 7.6,
+		clasificacion: 'B15'
+	},
+	{
+		id: "tt1663662",
+		titulo: 'Titanes del Pacifico',
+		director: 'Guillermo del Toro',
+		year: 2013,
+		pais: ['Estados Unidos'],
+		generos: ['Action', 'Adventure', 'Sci-Fi'],
+		calificacion: 6.9,
+		clasificacion: 'B'
 	}
-}
+]
+
+PelisFavoritas.forEach(el => new Pelicula(el).fichaTecnica())

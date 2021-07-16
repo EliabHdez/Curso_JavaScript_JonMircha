@@ -657,7 +657,7 @@
 
 	// Ejercicio 25
 			// Forma 1
-				const quitarDuplicados = (arr) => {
+				const eliminarDuplicados = (arr) => {
 					if(arr === undefined) return console.warn('No inresaste ningun Array')
 
     				if(!(arr instanceof Array)) return console.error(`El dato ingresado No es un Array`)
@@ -695,12 +695,12 @@
 					})
 				}
 
-				eliminarDuplicados()
-				eliminarDuplicados('')
-				eliminarDuplicados(123)
-				eliminarDuplicados([])
-				eliminarDuplicados([5])
-				eliminarDuplicados(['x',10,'x',2,10,'10',true,true])
+				quitarDuplicados()
+				quitarDuplicados('')
+				quitarDuplicados(123)
+				quitarDuplicados([])
+				quitarDuplicados([5])
+				quitarDuplicados(['x',10,'x',2,10,'10',true,true])
 
 	// Ejercicio 26
 			// Forma 1
@@ -712,14 +712,16 @@
     				if(arr.length === 0) return console.warn('El Array ingresado esta vacío')
 
     				for(let elemento of arr){
-    				    if(typeof elemento !== 'number') return console.error(`El valor "${elemento}" NO es 	un número`)
+    				    if(typeof elemento !== 'number') return console.error(`El valor "${elemento}" NO es un número`)
     				}
 					
 					return console.info(
 						arr.reduce((total, num, index, arr) => {
 							total += num
 							if(index === arr.length-1){
-								return console.info(`El promedio de ${arr.join('+')} es ${total / arr.length}`)
+								return `El promedio de ${arr.join(' + ')} es ${total / arr.length}`
+							}else{
+								return total
 							}
 						})
 					)
@@ -731,3 +733,160 @@
 				promedio([])
 				promedio([2,true])
 				promedio([1,2,3,4,5,6,7,8,9,0])
+
+	// Ejercicio 27
+			// Forma 1
+				class Pelicula {
+					constructor({id, titulo, director, estreno, pais, generos, calificacion}){
+						this.id = id
+						this.titulo = titulo
+						this.director = director
+						this.estreno = estreno
+						this.pais = pais
+						this.generos = generos
+						this.calificacion = calificacion
+
+						this.validarIMDB(id)
+						this.validarTitulo(titulo)
+						this.validarDirector(director)
+						this.validarEstreno(estreno)
+						this.validarPais(pais)
+						this.validarGeneros(generos)
+						this.validarCalificacion(calificacion)
+					}
+
+					static get listaGeneros(){
+						return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News, Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"]
+					}
+
+					static generosAceptados(){
+						return console.info(`Los generos aceptados son: ${Pelicula.listaGeneros.join(', ')}`)
+					}
+
+					validarCadena(propiedad, valor){
+						if(!valor) return console.warn(`${propiedad} "${valor}" esta vacío`)
+
+						if(typeof valor !== 'string') return console.error(`${propiedad} "${valor}" ingresado, NO es una cadena de texto`)
+
+						return true
+					}
+
+					validarLongitudCadena(propiedad, valor, longitud){
+						if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el número de caracteres permitidos (${longitud})`)
+
+						return true
+					}
+
+					validarNumero(propiedad, valor){
+						if(!valor) return console.warn(`${propiedad} "${valor}" esta vacío`)
+
+						if(typeof valor !== 'number') return console.error(`${propiedad} "${valor}" ingresado, NO es un número`)
+
+						return true
+					}
+
+					validarArreglo(propiedad, valor){
+						if(!valor) return console.warn(`${propiedad} "${valor}" esta vacío`)
+
+						if(!(valor instanceof Array)) return console.error(`${propiedad} "${valor}" ingresado, NO es un Array`)
+
+						if(valor.length === 0) return console.error(`${propiedad} "${valor}" no tiene datos`)
+
+						for(let cadena of valor){
+							if(typeof cadena !== 'string') return console.error(`El valor "${cadena}" ingresado, NO es una cadena de texto`)
+						}
+
+						return true
+					}
+
+					validarIMDB(id){
+						if(this.validarCadena('IMDB id', id)){
+							if(!(/^([a-z]){2}([0-9]){7}$/.test(id)))
+								return console.error(`IMDB id "${id}" no es válido, debe tener 9 caracteres totales, los 2 primeros letras minúsculas, los 7 restantes números`)
+						}
+					}
+
+					validarTitulo(titulo){
+						if(this.validarCadena('Título', titulo))
+							this.validarLongitudCadena('Título', titulo, 100)
+					}
+
+					validarDirector(director){
+						if(this.validarCadena('Director', director))
+							this.validarLongitudCadena('Director', director, 50)
+					}
+
+					validarEstreno(estreno){
+						if(this.validarNumero('Año de Estreno', estreno))
+							if(!(/^([0-9]){4}$/.test(estreno)))
+								return console.error(`Año de Estreno "${estreno}" no es válido, debe ser un número de 4 dígitos`)
+					}
+
+					validarPais(pais){
+						this.validarArreglo('País', pais)
+					}
+
+					validarGeneros(generos){
+						if(this.validarArreglo('Géneros', generos)){
+							for(let genero of generos){
+								if(!Pelicula.listaGeneros.includes(genero)){
+									console.error(`Género(s) incorrectos "${genero.join(', ')}"`)
+									Pelicula.generosAceptados()
+								}
+							}
+						}
+					}
+
+					validarCalificacion(calificacion){
+						if(this.validarNumero('Calificación', calificacion))
+							return (calificacion < 0 || calificacion > 10)
+								? console.error(`La calificación tiene que estar en un rango entre 0 y 10`)
+								: this.calificacion = calificacion.toFixed(1)
+					}
+
+					fichaTecnica(){
+						console.log(`
+							FICHA TÉCNICA:
+
+							ID: ${this.id}
+							Título: ${this.titulo}
+        					Director: ${this.director}
+        					Año de Estreno: ${this.estreno}
+        					Pais(es): ${this.pais.join(', ')}
+        					Géneros: ${this.generos.join(', ')}
+        					Calificación: ${this.calificacion}`
+							)
+					}
+				}
+
+				const PelisFavoritas = [
+					{
+						id: 'tt0816692',
+						titulo: 'Interestelar',
+						director: 'Christopher Nolan',
+						estreno: 2006,
+						pais: ['Estados Unidos', 'Reino Unido', 'Canada'],
+						generos: ['Sci-Fi', 'Adventure', 'Drama'],
+						calificacion: 8.6
+					},
+					{
+						id: 'tt2713180',
+						titulo: 'Corazones de Hierro',
+						director: 'David Ayer',
+						estreno: 2014,
+						pais: ['Estados Unidos'],
+						generos: ['Action', 'War', 'Drama'],
+						calificacion: 7.6,
+					},
+					{
+						id: "tt1663662",
+						titulo: 'Titanes del Pacifico',
+						director: 'Guillermo del Toro',
+						estreno: 2013,
+						pais: ['Estados Unidos'],
+						generos: ['Action', 'Adventure', 'Sci-Fi'],
+						calificacion: 6.9,
+					}
+				]
+				
+				PelisFavoritas.forEach(el => new Pelicula(el).fichaTecnica())
