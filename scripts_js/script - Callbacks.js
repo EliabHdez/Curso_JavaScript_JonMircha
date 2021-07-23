@@ -4,7 +4,7 @@ function cuadradoCallback(value, callback) {
     }, 0 | Math.random() * 1000)
 }
 
-// Se puede declara la funcion para como una funcion normal o de forma mas directa con una arrow function. Ambas maneras son correctas. Tanto la de arriba de este texto como la de abajo de este texto
+// Se puede declarar la funcion como una funcion normal (funcion declarada) o de forma mas directa con una funcion expresada. Ambas maneras son correctas. Tanto la de arriba de este texto como la de abajo de este texto
 
 cuadradoCallback = (value, callback) => {
     setTimeout(() => {
