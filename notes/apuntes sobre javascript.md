@@ -197,3 +197,7 @@ Ejercicios de Lógica de Programación
 		* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, 		Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, 		Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
 
 		(Todos los ejercicio se crearon con funciones, ya sea funcion clasica o de flecha pero con funciones, en alguno que otro añadi ejercicios sin utilizar funciones, donde emplee variables o constantes solo para ver que era lo mismo y daba los mismos resultados, pero en otros no y solo se quedaron realizados con funciones, ya que asi tal cual fue como los estipulo el profe, crear o programar una funcion que arrojara ciertos resultados)
+
+El Symbol es un tipo de dato primitivo y para declararlo lo tenemos que hacer de forma directa, sin el operador "new"
+
+El Set y el Map son tipos de datos complejos y estos para declararlos es necesario que hagamos uso del operador "new"
